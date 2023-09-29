@@ -1,25 +1,20 @@
 import "./App.css";
 
-import { Switch } from "react-router-dom";
-import {
-  BrowserRouter,
-  Route,
-} from "react-router-dom/cjs/react-router-dom.min";
-import SignUpPage from "./Componenets/Pages/SignUpPage";
+import { Routes, Route } from "react-router-dom";
+import SignUpPage from "./Components/Pages/SignUpPage";
+import Welocme from "./Components/Auth/Welcome";
+
+import TextEditorPage from "./Components/Pages/TextEditorPage";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact>
-            <SignUpPage></SignUpPage>
-          </Route>
-          <Route exact path="/signup">
-            <SignUpPage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignUpPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/welcome" element={<Welocme />}></Route>
+        <Route path="/text" element={<TextEditorPage />}></Route>
+      </Routes>
     </div>
   );
 }
