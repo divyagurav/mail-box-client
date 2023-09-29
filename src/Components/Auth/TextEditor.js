@@ -12,11 +12,16 @@ const TextEditor = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailRef.current.value;
+    const mailObj = {
+      email: emailRef.current.value,
+      subject: subjectRef.current.value,
+      text: textRef.current.value,
+    };
+    let emailId = mailObj.email.replace(/[&@.]/g, "");
 
-    fetch("https://profile-8d013-default-rtdb.firebaseio.com/email.json", {
+    fetch(`https://profile-8d013-default-rtdb.firebaseio.com/${emailId}.json`, {
       method: "POST",
-      body: JSON.stringify(enteredEmail),
+      body: JSON.stringify(mailObj),
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,6 +44,17 @@ const TextEditor = () => {
                   <h3>welcome </h3>
                 </Card.Header>
                 <Card.Body className="colours">
+                  {/* <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder="Username"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                      ref={emailRef}
+                    />
+                  </InputGroup> */}
                   <Form.Group controlId="email">
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
