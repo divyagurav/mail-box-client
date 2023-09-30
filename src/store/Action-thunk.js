@@ -1,5 +1,12 @@
 import { AuthsliceAction } from "./Auth";
 
+const Navigate = () => {
+  // let ;
+  console.log("navi");
+
+  // ;
+};
+
 const loginURL =
   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD61trb_TQ27ZLrT4ybyyFKWkht-DaUa0o";
 const signupUrl =
@@ -16,13 +23,11 @@ export const sendsignup = (obj) => {
           "Content-Type": "application/json",
         },
       });
-
       const data = await response.json();
       if (data.error) {
         alert(data.error.message);
         throw new Error(data.error.message);
       }
-
       return data;
     };
     try {
@@ -33,7 +38,6 @@ export const sendsignup = (obj) => {
     }
   };
 };
-
 export const Sendlogin = (obj) => {
   return async (dispatch) => {
     const sendingloginAuth = async () => {
@@ -44,13 +48,11 @@ export const Sendlogin = (obj) => {
           "Content-Type": "application/json",
         },
       });
-
       const data = await response.json();
       if (data.error) {
         alert(data.error.message);
         throw new Error(data.error.message);
       }
-
       return data;
     };
     try {

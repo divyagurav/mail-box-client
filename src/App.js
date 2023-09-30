@@ -1,6 +1,9 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import AuthForm from "./Componenets/AuthForm";
 import InboxList from "./Componenets/InBoxPage/InboxList";
+import { Route, Routes, Navigate } from "react-router-dom";
+import AuthForm from "./Componenets/AuthForm";
+import InboxList from "./Componenets/InBoxPage/InboxList";
 import InboxPage from "./Componenets/InBoxPage/InboxPage";
 import TextEditing from "./Componenets/TextEditing/TextEditing";
 

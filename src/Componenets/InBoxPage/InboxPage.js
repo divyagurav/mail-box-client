@@ -1,15 +1,20 @@
+import React from "react";
 import "./InboxPage.css";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
-
+import { Container, Form, Button, Row, Col, ListGroup } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import { Link, Route, Routes } from "react-router-dom";
-
+import { Nav } from "react-bootstrap";
+import InboxList from "./InboxList";
 import InboxNavbar from "./InboxNavBar";
-
+import TextEditing from "../TextEditing/TextEditing";
 import { getmailHandler } from "../../store/Mail-thunk";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { UpdateList } from "../../store/Mail-thunk";
 import MessageView from "./MessageView";
+import SentMessage from "../SendMessage/SendMessage";
+import SendMessageVIew from "../SendMessage/SendMessageView";
 
 let isinitialState = true;
 
@@ -27,6 +32,25 @@ const InboxPage = () => {
       Disptach(getmailHandler());
     }
   }, [count]);
+  // useEffect(() => {
+  //   console.log("UpdateList", Items);
+  //   Disptach(UpdateList(Items));
+  // }, [count, Disptach]);
+  useEffect(() => {
+    const intervelid = setInterval(() => {
+      console.log("setintervelid", intervelid);
+      Disptach(getmailHandler());
+    }, 2000);
+
+    return () => {
+      console.log("clearintervelid", intervelid);
+      clearInterval(intervelid);
+    };
+  });
+
+  const sendmailcartHandler = () => {
+    Disptach(getmailHandler());
+  };
   return (
     <>
       <InboxNavbar></InboxNavbar>
@@ -50,14 +74,32 @@ const InboxPage = () => {
               <ListGroup.Item className="m-1" action>
                 <Link to="#">sendMail</Link>
               </ListGroup.Item>
+              <Link to="sentmessage">
+                <ListGroup.Item
+                  className="m-1"
+                  action
+                  onClick={sendmailcartHandler}
+                >
+                  sendMail
+                </ListGroup.Item>
+              </Link>
               <ListGroup.Item className="m-1" action>
                 DraftBox
               </ListGroup.Item>
             </ListGroup>
           </Col>
           <Col xs={10} className="">
+            {/* <ListGroup className="flex">
+              <ListGroupItem> sone text</ListGroupItem>
+            </ListGroup> */}
             <Routes>
               <Route path="/inboxlist/mailview" element={<MessageView />} />
+            </Routes>
+            <Routes>
+              <Route
+                path="/sentmessage/sentmailview"
+                element={<SendMessageVIew />}
+              />
             </Routes>
             {/* <InboxList></InboxList> */}
             <Outlet></Outlet>
@@ -70,5 +112,4 @@ const InboxPage = () => {
     </>
   );
 };
-
 export default InboxPage;
