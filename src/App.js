@@ -1,19 +1,24 @@
-import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
+import AuthForm from "./Componenets/AuthForm";
+import InboxList from "./Componenets/InBoxPage/InboxList";
+import InboxPage from "./Componenets/InBoxPage/InboxPage";
+import TextEditing from "./Componenets/TextEditing/TextEditing";
 
-import { Routes, Route } from "react-router-dom";
-import SignUpPage from "./Components/Pages/SignUpPage";
-import Welocme from "./Components/Auth/Welcome";
-
-import TextEditorPage from "./Components/Pages/TextEditorPage";
+let islogin = localStorage.getItem("islogin") === "true";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Routes>
-        <Route path="/" element={<SignUpPage />}></Route>
-        <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/welcome" element={<Welocme />}></Route>
-        <Route path="/text" element={<TextEditorPage />}></Route>
+        <Route path="/login" element={<AuthForm />}></Route>
+        <Route path="/main/*" element={<InboxPage />}>
+          <Route path="inboxlist" element={<InboxList />} />
+          <Route path="text-edit" element={<TextEditing />} />
+        </Route>
+        {islogin && (
+          <Route path="/login" element={<Navigate replace to="main" />} />
+        )}
+        {/* <TextEditing></TextEditing> */}
       </Routes>
     </div>
   );
