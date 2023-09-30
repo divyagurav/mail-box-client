@@ -6,13 +6,16 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { DeleteMail } from "../../store/Mail-thunk";
 import { MailSliceAction } from "../../store/MailSlice";
+
 const InboxListItem = (props) => {
   const Dispatch = useDispatch();
   console.log("details/", props);
+
   let Readreceipt;
   if (!props.readreceipt) {
     Readreceipt = "readreceipt";
   }
+
   const ListItemHandler = () => {
     if (props.readreceipt) {
       Dispatch(MailSliceAction.addMessageViewinfo(props));
@@ -40,10 +43,9 @@ const InboxListItem = (props) => {
             <Col className="pb-3">
               <div className="readreceiptbox" onClick={ListItemHandler}>
                 <div className={`${Readreceipt}`}>.</div>
-                <Link to="mailview">{props.Form}</Link>
+                <Link to="mailview">{props.email}</Link>
               </div>
             </Col>
-
             <Col md={1} style={{ height: "20px" }}>
               <Button variant="secondary" onClick={deleteHandler}>
                 delete

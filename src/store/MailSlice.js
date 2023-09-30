@@ -8,6 +8,7 @@ const initialval = {
   messageView: {},
   sentItem: [],
 };
+
 const MailSlice = createSlice({
   name: "mail",
   initialState: initialval,
@@ -49,11 +50,7 @@ const MailSlice = createSlice({
     },
     addMessageViewinfo(state, action) {
       state.messageView = action.payload;
-      //console.log(" addMessageViewinfo", action.payload);
-    },
-    RemovesentMail(state, action) {
-      // console.log(state.sentItem);
-      state.sentItem = action.payload;
+      console.log(" addMessageViewinfo", action.payload);
     },
   },
 });

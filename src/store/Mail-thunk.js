@@ -1,9 +1,8 @@
 import { MailSliceAction } from "./MailSlice";
-import { MymailSliceAction } from "./MymailSlice";
-
 export const sendMailHandler = (mailobj) => {
   return async (Disptach) => {
     let emailId = await mailobj.email.replace(/[&@.]/g, "");
+
     const sendingmail = async () => {
       const response = await fetch(
         `https://react-http-76e5c-default-rtdb.firebaseio.com/${emailId}/inbox.json`,
@@ -53,7 +52,7 @@ export const getmailHandler = () => {
     try {
       const data = await gettingMailList();
       const items = data.inbox;
-      let sentItem = data.sendItems;
+      const sentItem = data.sendItems;
 
       // console.log(data);
       const transformeddata = [];
@@ -65,22 +64,17 @@ export const getmailHandler = () => {
         transformeddata.push(Obj);
       }
       // console.log(transformeddata);
-      sentItem = sentItem.map((item, index) => {
-        return {
-          id: index,
-          ...item,
-        };
-      });
       Disptach(MailSliceAction.addItem({ transformeddata, sentItem }));
-      Disptach(MymailSliceAction.AddSenditemList(sentItem));
     } catch (error) {
       console.log("error message");
     }
   };
 };
+
 export const UpdateList = (obj) => {
   return async (Dispatch) => {
     let emailId = localStorage.getItem("mailid").replace(/[&@.]/g, "");
+
     const UpdateEmailList = async () => {
       const response = await fetch(
         `https://react-http-76e5c-default-rtdb.firebaseio.com/${emailId}/inbox/${obj.id}.json`,
@@ -115,6 +109,7 @@ export const UpdateList = (obj) => {
 export const DeleteMail = (id) => {
   return async (Dispatch) => {
     let emailId = localStorage.getItem("mailid").replace(/[&@.]/g, "");
+
     const DeletingMail = async () => {
       const response = await fetch(
         `https://react-http-76e5c-default-rtdb.firebaseio.com/${emailId}/inbox/${id}.json`,
@@ -145,6 +140,7 @@ export const DeleteMail = (id) => {
 export const UpdateMySentItem = (sentItem) => {
   return async (Dispatch) => {
     let emailId = localStorage.getItem("mailid").replace(/[&@.]/g, "");
+
     const UpdatedingmySendingItem = async () => {
       const response = await fetch(
         `https://react-http-76e5c-default-rtdb.firebaseio.com/${emailId}/sentItem/.json`,

@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { UpdateList } from "../../store/Mail-thunk";
 import MessageView from "./MessageView";
 import SentMessage from "../SendMessage/SendMessage";
-import SendMessageVIew from "../SendMessage/SendMessageView";
 
 let isinitialState = true;
 
@@ -32,25 +31,6 @@ const InboxPage = () => {
       Disptach(getmailHandler());
     }
   }, [count]);
-  // useEffect(() => {
-  //   console.log("UpdateList", Items);
-  //   Disptach(UpdateList(Items));
-  // }, [count, Disptach]);
-  useEffect(() => {
-    const intervelid = setInterval(() => {
-      console.log("setintervelid", intervelid);
-      Disptach(getmailHandler());
-    }, 2000);
-
-    return () => {
-      console.log("clearintervelid", intervelid);
-      clearInterval(intervelid);
-    };
-  });
-
-  const sendmailcartHandler = () => {
-    Disptach(getmailHandler());
-  };
   return (
     <>
       <InboxNavbar></InboxNavbar>
@@ -75,11 +55,7 @@ const InboxPage = () => {
                 <Link to="#">sendMail</Link>
               </ListGroup.Item>
               <Link to="sentmessage">
-                <ListGroup.Item
-                  className="m-1"
-                  action
-                  onClick={sendmailcartHandler}
-                >
+                <ListGroup.Item className="m-1" action>
                   sendMail
                 </ListGroup.Item>
               </Link>
@@ -94,12 +70,6 @@ const InboxPage = () => {
             </ListGroup> */}
             <Routes>
               <Route path="/inboxlist/mailview" element={<MessageView />} />
-            </Routes>
-            <Routes>
-              <Route
-                path="/sentmessage/sentmailview"
-                element={<SendMessageVIew />}
-              />
             </Routes>
             {/* <InboxList></InboxList> */}
             <Outlet></Outlet>

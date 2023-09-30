@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const MessageView = (props) => {
-  let messageView = useSelector((state) => state.mail.messageView);
-  const mymailmessageView = useSelector((state) => state.mymail.messageView);
+  const messageView = useSelector((state) => state.mail.messageView);
   const navigate = useNavigate();
-  console.log(messageView, " mymailmessageView");
-
+  // console.log(messageView);
   const replybuttonHandler = () => {
     navigate("/main/text-edit");
   };

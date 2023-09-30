@@ -4,7 +4,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Row, Col, Container, Card, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import "./TextEditing.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sendMailHandler } from "../../store/Mail-thunk";
 import { MymailSliceAction } from "../../store/MymailSlice";
 
@@ -13,7 +13,6 @@ const TextEditing = () => {
   const Enteredemail = React.createRef(null);
   const Enteredsubject = React.createRef(null);
   const Enteredtext = React.createRef(null);
-  const sentItemlist = useSelector((state) => state.mymail.sentItem);
   const FormsubmitHandler = (event) => {
     event.preventDefault();
     const mailData = {
@@ -24,15 +23,7 @@ const TextEditing = () => {
       readreceipt: false,
     };
     Disptach(sendMailHandler(mailData));
-    if (sentItemlist.length > 0) {
-      let oldlist = sentItemlist;
-      let sentItem = [...oldlist, mailData];
-
-      console.log(sentItem);
-      Disptach(MymailSliceAction.updateSendItem(sentItem));
-    } else {
-      Disptach(MymailSliceAction.updateSendItem([mailData]));
-    }
+    Disptach(MymailSliceAction.AddSenditemList(mailData));
     console.log(mailData, "TextEditing-FormsubmitHandler");
   };
   return (

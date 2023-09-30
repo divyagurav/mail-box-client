@@ -3,22 +3,28 @@ import { ListGroup } from "react-bootstrap";
 import SentMessageItem from "./SendMessageItem";
 import { useEffect } from "react";
 import { UpdateMySentItem } from "../../store/Mail-thunk";
+
 import { useSelector, useDispatch } from "react-redux";
 const SentMessage = () => {
   const Dispatch = useDispatch();
-  const sentItem = useSelector((state) => state.mymail.sentItem);
-  console.log(sentItem);
-
+  const sentItem = useSelector((state) => state.mail.sentItem);
+  //   const sentItem = useSelector((state) => state.mymail.sentItem);
+  const updateTrigger = useSelector((state) => state.mymail.myupdateTriggerval);
+  console.log(updateTrigger);
+  useEffect(() => {
+    // Dispatch(UpdateMySentItem(sentItem))
+    console.log(sentItem);
+  }, [sentItem]);
   return (
     <>
       <ListGroup as="ul" variant="primary">
-      {sentItem.map((item, index) => (
+        {sentItem.map((item) => (
           <SentMessageItem
-          key={index}
+            key={item.id}
             email={item.email}
             subject={item.subject}
             text={item.text}
-            id={index}
+            id={item.id}
             readreceipt={item.readreceipt}
           ></SentMessageItem>
         ))}
