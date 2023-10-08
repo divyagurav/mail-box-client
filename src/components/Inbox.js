@@ -14,7 +14,7 @@ const Inbox = () => {
     const key = localStorage.getItem("key which is clicked");
     axios
       .patch(
-        `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox/${key}.json`,
+        `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox/${key}.json`,
         { read: true }
       )
       .then((response) => {
@@ -34,7 +34,7 @@ const Inbox = () => {
   const deleteEmail = (key) => {
     axios
       .delete(
-        `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox/${key}.json`
+        `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox/${key}.json`
       )
       .then((response) => {
         console.log("Email deleted successfully:", response.data);
@@ -51,7 +51,7 @@ const Inbox = () => {
     const fetchMessages = () => {
       axios
         .get(
-          `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox.json`
+          `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox.json`
         )
         .then((response) => {
           console.log(
@@ -77,17 +77,21 @@ const Inbox = () => {
     setSelectedEmail(null);
   };
 
-  const countUnreadMessages = Object.values(messages).reduce((count, message) => {
-    if (messages.read === false) {
-      return count = count+1;
-    }
-    return count;
-  }, 0);
+  const countUnreadMessages = Object.values(messages).reduce(
+    (count, message) => {
+      if (messages.read === false) {
+        return (count = count + 1);
+      }
+      return count;
+    },
+    0
+  );
 
   return (
     <div>
       <h3 style={{ color: "white" }}>
-        Inbox --{`(${sanitizedEmail}) There are ${countUnreadMessages} unread messages.`}
+        Inbox --
+        {`(${sanitizedEmail}) There are ${countUnreadMessages} unread messages.`}
       </h3>
       <Card className="text-left">
         <ListGroup variant="flush">

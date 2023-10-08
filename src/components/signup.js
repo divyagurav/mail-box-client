@@ -1,4 +1,4 @@
-import { FloatingLabel, Form, FormControl, Button, Nav } from "react-bootstrap";
+import { FloatingLabel, Form, FormControl, Button } from "react-bootstrap";
 import classes from "./signup.module.css";
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
@@ -19,7 +19,7 @@ const SignupDetails = () => {
       alert("Password and confirm password must match");
     } else {
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD61trb_TQ27ZLrT4ybyyFKWkht-DaUa0o",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCODwcyHk2Zov8fcLhSOjRQLG-3O357vS0",
         {
           method: "POST",
           body: JSON.stringify({
@@ -86,13 +86,12 @@ const SignupDetails = () => {
             <Button type="submit" style={{ borderRadius: "5rem" }}>
               Sign up
             </Button>
-          </div> 
+          </div>
           <div className={classes.h2}>
-          <NavLink to={"/login"}>Have an account?</NavLink>
-      </div>
+            <NavLink to={"/login"}>Have an account?</NavLink>
+          </div>
         </Form>
       </div>
-     
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import authReducer from "./auth";
+import authReducer from "./Auth";
 import inboxReducer from "./inboxSlice";
 
 const store = configureStore({

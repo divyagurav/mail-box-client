@@ -14,7 +14,7 @@ const Sent = () => {
   useEffect(() => {
     axios
       .get(
-        `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox.json`
+        `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedEmail}/outbox.json`
       )
       .then((response) => {
         console.log(`logging from sent box${JSON.stringify(response.data)}`);

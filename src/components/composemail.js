@@ -42,7 +42,7 @@ const ComposeEmail = () => {
     // sending data to the outbox
     axios
       .post(
-        `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedSenderEmail}/outbox.json`,
+        `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedSenderEmail}/outbox.json`,
         message
       )
       .then((response) => {
@@ -58,7 +58,7 @@ const ComposeEmail = () => {
     //Sending data to inbox of the user
     axios
       .post(
-        `https://react-http-76e5c-default-rtdb.firebaseio.com/${sanitizedReceiverEmail}/inbox.json`,
+        `https://profile-8d013-default-rtdb.firebaseio.com/${sanitizedReceiverEmail}/inbox.json`,
         {
           from: toRef.current.value,
           subject: subjectRef.current.value,
@@ -87,6 +87,7 @@ const ComposeEmail = () => {
           padding: "2rem",
           marginLeft: "5rem",
           marginTop: "2rem",
+          backgroundColor: "black",
         }}
       >
         <Card.Title style={{ fontFamily: "Arial", fontWeight: "bolder" }}>
@@ -100,7 +101,6 @@ const ComposeEmail = () => {
         </FloatingLabel>
         <Card.Body
           style={{
-            backgroundColor: "black",
             color: "white",
             textAlign: "left",
           }}
@@ -114,7 +114,11 @@ const ComposeEmail = () => {
             onEditorStateChange={onEditorStateChange}
           />
         </Card.Body>
-        <Button variant="success" type="submit">
+        <Button
+          variant="success"
+          type="submit"
+          style={{ width: "50%", margin: "auto" }}
+        >
           Send
         </Button>
       </Card>

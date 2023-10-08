@@ -3,7 +3,7 @@ import { FormControl, Form, FloatingLabel, Button, Nav } from "react-bootstrap";
 import classes from "./login.module.css";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authActions } from "../store/auth";
+import { authActions } from "../store/Auth";
 
 const LoginDetails = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const LoginDetails = () => {
       alert("Must fill both Email and Password");
     } else {
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDX-grREdWOTWK9AQ1nqi5S0KUPryQ5KqQ",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCODwcyHk2Zov8fcLhSOjRQLG-3O357vS0",
         {
           method: "POST",
           body: JSON.stringify({
@@ -99,7 +99,7 @@ const LoginDetails = () => {
 
           console.log(data);
           console.log(data.idToken);
-          alert("welcome to your mail box");
+          // alert("welcome to your mail box");
           history.replace("/inbox");
         })
         .catch((err) => {

@@ -4,8 +4,8 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 4rem;
   text-align: left;
-  background-color: rgb(38, 74, 98);
-  border-radius: 5rem;
+  background-color: black;
+  border-radius: 10px;
 }
 .signup h1 {
   color: white;
