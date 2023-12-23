@@ -1,0 +1,38 @@
+.sent{
+    background-color:black;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    padding: 6px;
+    color: white;
+    width: 50%;
+    border-radius: 8px;
+}
+
+.sent button{
+    background-color: black;
+    border: none;
+    color: white;
+    margin-top: 10px;
+}
+
+.dot{
+    height: 20px;
+    width: 20px;
+    background-color:rgb(27, 188, 236);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 8px;
+  
+}
+
+.white{
+    height: 20px;
+    width: 20px;
+    background-color:white;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 8px;
+}

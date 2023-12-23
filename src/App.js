@@ -1,41 +1,30 @@
-import { Button } from "react-bootstrap";
 import "./App.css";
-import SignupDetails from "./components/signup";
-import { Switch, Route, Redirect } from "react-router-dom";
-import LoginDetails from "./components/login";
-import ComposeEmail from "./components/composemail";
-import NavbarDetails from "./components/Navbar";
-import { useSelector } from "react-redux";
-import Inbox from "./components/Inbox";
-import Sent from "./components/sentbox";
+import TextEdit from "./TextEdit/TextEdit";
+import { Route, Routes } from "react-router-dom";
+import SentDataPage from "./Pages/SentDataPage";
+import Header from "./TextEdit/Header";
+//import TextBar from "./TextEdit/TextBar";
+import Message from "./TextEdit/Message";
+import Signup from "./Auth/Signup";
+import Login from "./Auth/Login";
 
+import SenderInbox from "./TextEdit/SenderInbox";
 
 function App() {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
   return (
     <div className="App">
-      <NavbarDetails />
-      <Switch>
-        <Route exact path="/login">
-          <LoginDetails />
-        </Route>
-        <Route exact path="/signup">
-          <SignupDetails />
-        </Route>
-        <Route exact path="/composemail">
-          {isAuthenticated && <ComposeEmail />}
-          {!isAuthenticated && <Redirect to="/login" />}
-        </Route>
-        <Route path="/inbox">
-          {isAuthenticated && <Inbox />}
-          {!isAuthenticated && <Redirect to="/login" />}
-        </Route>
-        <Route path="/sent">
-          {isAuthenticated && <Sent />}
-          {!isAuthenticated && <Redirect to="/login" />}
-        </Route>
-      </Switch>
+      {/* <TextBar /> */}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Signup />}></Route>
+        <Route path="/textedit" element={<TextEdit />}></Route>
+        <Route path="/text" element={<TextEdit />}></Route>
+        <Route path="/header" element={<Header />}></Route>
+        <Route path="/sentdata" element={<SentDataPage />}></Route>
+        <Route path="/message" elememt={<Message />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/inbox" element={<SenderInbox />}></Route>
+      </Routes>
     </div>
   );
 }
